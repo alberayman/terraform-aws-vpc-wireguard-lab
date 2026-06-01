@@ -1,0 +1,37 @@
+# Copy this file to terraform.tfvars and fill in the values.
+#
+#   cp terraform.tfvars.example terraform.tfvars
+#
+# terraform.tfvars is excluded from version control via .gitignore because
+# it will contain your WireGuard public key and local file paths.
+# Never commit terraform.tfvars to git.
+
+# ---------------------------------------------------------------------------
+# Required
+# ---------------------------------------------------------------------------
+
+# Your WireGuard client public key.
+# Generate it with:
+#   wg genkey | tee ~/.wireguard/mac-private.key | wg pubkey > ~/.wireguard/mac-public.key
+#   cat ~/.wireguard/mac-public.key
+mac_public_key = "YOUR_WIREGUARD_PUBLIC_KEY_HERE"
+
+# ---------------------------------------------------------------------------
+# Optional — defaults shown below
+# ---------------------------------------------------------------------------
+
+# AWS region where all resources are deployed.
+region = "eu-west-1"
+
+# Prefix applied to the Name tag of every resource.
+project_name = "vpc-demo"
+
+# Local path to the SSH public key uploaded as the EC2 key pair.
+# Generate with: ssh-keygen -t ed25519 -f ~/.ssh/vpc-demo-key -C "vpc-demo"
+ssh_public_key_path = "~/.ssh/vpc-demo-key.pub"
+
+# EC2 instance type for the NGINX server (t2.micro is free-tier eligible).
+nginx_instance_type = "t2.micro"
+
+# EC2 instance type for the WireGuard VPN server.
+wireguard_instance_type = "t2.micro"
